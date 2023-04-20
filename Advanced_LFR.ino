@@ -1,11 +1,5 @@
 #include <QTRSensors.h>
 
-// This example is designed for use with eight RC QTR sensors. These
-// reflectance sensors should be connected to digital pins 3 to 10. The
-// sensors' emitter control pin (CTRL or LEDON) can optionally be connected to
-// digital pin 2, or you can leave it disconnected and remove the call to
-// setEmitterPin().
-//
 // The setup phase of this example calibrates the sensors for ten seconds and
 // turns on the Arduino's LED (usually on pin 13) while calibration is going
 // on. During this phase, you should expose each reflectance sensor to the
@@ -31,13 +25,32 @@ QTRSensors qtr;
 const uint8_t SensorCount = 8;
 uint16_t sensorValues[SensorCount];
 
+// setting PWM properties
+const int freq = 5000;
+const int LeftMotorChannel = 0;
+const int RightMotorChannel = 1;
+const int resolution = 8;
+
 void setup()
 {
   // configure the sensors
   qtr.setTypeRC();
-  qtr.setSensorPins((const uint8_t[]){15, 2, 0, 4, 16, 17, 5, 18}, SensorCount);
+  qtr.setSensorPins((const uint8_t[]) {
+    15, 2, 19, 4, 16, 17, 5, 18
+  }, SensorCount);
   qtr.setEmitterPin(23);
+  
+  ledcSetup(LeftMotorChannel, freq, resolution);
+  ledcSetup(RightMotorChannel, freq, resolution);
+  ledcAttachPin(26, LeftMotorChannel);
+  ledcAttachPin(25, RightMotorChannel);
 
+  
+  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(14, OUTPUT);
+  pinMode(27, OUTPUT);
+  
   delay(500);
   pinMode(35, OUTPUT);
   digitalWrite(35, HIGH); // turn on Arduino's LED to indicate we are in calibration mode
@@ -69,6 +82,14 @@ void setup()
   Serial.println();
   Serial.println();
   delay(1000);
+
+  digitalWrite(13, HIGH);
+  digitalWrite(12, LOW);
+  digitalWrite(14, HIGH);
+  digitalWrite(27, LOW);
+
+  ledcWrite(LeftMotorChannel, 150);
+  ledcWrite(RightMotorChannel, 150);
 }
 
 void loop()
@@ -86,6 +107,8 @@ void loop()
     Serial.print('\t');
   }
   Serial.println(position);
-
+  float error = (position - 3500) / 1000;
+  if (error < 0) {
+  }
   delay(250);
 }
