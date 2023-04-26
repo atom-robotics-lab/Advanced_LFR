@@ -109,6 +109,11 @@ void loop()
   Serial.println(position);
   float error = (position - 3500) / 1000;
   if (error < 0) {
+    ledcWrite(LeftMotorChannel, 150);
+    ledcWrite(RightMotorChannel, 150+(error*-1*30));
+  } else if (error>0){
+    ledcWrite(LeftMotorChannel, 150+(error*30));
+    ledcWrite(RightMotorChannel, 150);
   }
   delay(250);
 }
