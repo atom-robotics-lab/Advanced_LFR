@@ -6,9 +6,9 @@ This repository is dedicated to the LFR (Line Follower Robot) project. LFR is an
 
 ## Built with:
 
- - ![C++ programming](%22C:%5CUsers%5CAakshar%5CDesktop%5Cc++%20prog.png%22)
- - ![Espressif](C:%5CUsers%5CAakshar%5CDesktop%5Cespressif.png)
- - ![Arduino](C:%5CUsers%5CAakshar%5CDesktop%5Carduino.png)
+ - [C++ programming](https://www.programiz.com/cpp-programming)
+ - [Espressif](https://www.espressif.com/)
+ - [Arduino](https://www.arduino.cc/)
 
 ## Installations:
 To make the code for the Line Follower Robot (LFR) work, you need to install the following libraries/applications:
@@ -59,4 +59,4 @@ To make the code for the Line Follower Robot (LFR) work, you need to install the
 3. During the setup phase, expose the line sensors to the lightest and darkest readings they will encounter for proper calibration. The calibration will take approximately 10 seconds to complete.
 4. Once the calibration is complete, the line follower robot will continuously track and follow the line based on the sensor readings and line position estimation.
 
-![Adv. LFR layout](%22C:%5CUsers%5CAakshar%5CDesktop%5Clfr%20layout.jpg%22)
+![Adv. LFR layout](https://cdn.discordapp.com/attachments/1055555101646925854/1114125670545629244/1685698636150.jpg)
