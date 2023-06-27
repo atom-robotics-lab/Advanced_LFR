@@ -35,21 +35,19 @@ void setup()
 {
   // configure the sensors
   qtr.setTypeRC();
-  qtr.setSensorPins((const uint8_t[]) {
-    15, 2, 19, 4, 16, 17, 5, 18
-  }, SensorCount);
-  qtr.setEmitterPin(23);
+  qtr.setSensorPins((const uint8_t[]) { 2, 4, 5, 18, 19, 21, 22, 23}, SensorCount);
+  qtr.setEmitterPin(15);
   
   ledcSetup(LeftMotorChannel, freq, resolution);
   ledcSetup(RightMotorChannel, freq, resolution);
-  ledcAttachPin(26, LeftMotorChannel);
-  ledcAttachPin(25, RightMotorChannel);
+  ledcAttachPin(33, LeftMotorChannel);
+  ledcAttachPin(12, RightMotorChannel);
 
   
-  pinMode(13, OUTPUT);
-  pinMode(12, OUTPUT);
-  pinMode(14, OUTPUT);
+  pinMode(26, OUTPUT);
+  pinMode(25, OUTPUT);
   pinMode(27, OUTPUT);
+  pinMode(14, OUTPUT);
   
   delay(500);
   pinMode(35, OUTPUT);
@@ -83,10 +81,10 @@ void setup()
   Serial.println();
   delay(1000);
 
-  digitalWrite(13, HIGH);
-  digitalWrite(12, LOW);
-  digitalWrite(14, HIGH);
-  digitalWrite(27, LOW);
+  digitalWrite(26, HIGH);
+  digitalWrite(25, LOW);
+  digitalWrite(27, HIGH);
+  digitalWrite(14, LOW);
 
   ledcWrite(LeftMotorChannel, 150);
   ledcWrite(RightMotorChannel, 150);
